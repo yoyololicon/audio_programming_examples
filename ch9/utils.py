@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import signal, interpolate
-from ch8.stft import rfft
+from ch8.utils import rfft
 
 
 def deltaphi(spec):
@@ -16,12 +16,11 @@ def deltaphi(spec):
 
 
 def sigmaphi(spec):
-    mag = spec[2::2].copy()
     phi_diff = spec[3::2]
     phi_sum = np.cumsum(phi_diff, axis=1)
 
-    spec[2::2] = mag * np.cos(phi_sum)
-    spec[3::2] = mag * np.sin(phi_sum)
+    spec[3::2] = spec[2::2] * np.sin(phi_sum)
+    spec[2::2] *= np.cos(phi_sum)
 
 
 def pvmorph(input1, input2, morpha, morphfr):
@@ -107,9 +106,10 @@ def addsyn(input, thresh, pitch, scale, hopsize, sr):
         outsum = np.take(tab, phase) * amp
         idx = np.where(ampnext[:, i + 1] < thresh)
         outsum[idx] = 0
-        output[pos:pos + hopsize] = np.sum(outsum, axis=0)
+        output[pos:pos + hopsize] = outsum.sum(0)
 
     return output
+
 
 if __name__ == '__main__':
     x = np.random.rand(10)

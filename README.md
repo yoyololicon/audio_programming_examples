@@ -1,7 +1,7 @@
 # Python implementations of examples from "The Audio Programming Book"
 
 Re-implement some of the example codes from the book [The Audio Programming Book](https://mitpress.mit.edu/books/audio-programming-book).
-Still work in progress. Currently finished [chapter 9](ch9).
+Still work in progress. Currently finished [chapter 9](ch9) and [8](ch8).
 
 ## Notes
 

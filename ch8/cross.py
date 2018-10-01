@@ -1,4 +1,4 @@
-from ch8.stft import *
+from ch8.utils import *
 import argparse
 from librosa import load
 from librosa.output import write_wav
@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('infile1', help='input1 (magnitudes) filename')
 parser.add_argument('infile2', help='input2 (phases) filename')
 parser.add_argument('outfile', help='output filename')
-parser.add_argument('dur', default=10, help='duration of input in seconds')
+parser.add_argument('--dur', default=10, help='duration of input in seconds')
 
 
 def crosspec(maginput, phasinput):

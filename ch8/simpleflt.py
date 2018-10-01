@@ -15,7 +15,8 @@ def main(infile, outfile):
     data, sr = load(infile, sr=None)
 
     spec = stft(data, fftsize, hopsize, 'hanning')
-    output = istft(spec, hopsize, 'hanning')
+    output = simplp(spec)
+    output = istft(output, hopsize, 'hanning')
     write_wav(outfile, output, sr)
 
 
