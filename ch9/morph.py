@@ -36,8 +36,7 @@ def main(infile1, infile2, outfile, dur, brkfile):
             x = np.concatenate((x, np.array([[t[-1], 0, 0]])), axis=0)
         if x[0, 0] > 0:
             x = np.concatenate((np.zeros((1,3)), x), axis=0)
-        tbrk, morpha, morphfr = np.split(x, (1, 2), axis=1)
-        tbrk, morpha, morphfr = np.squeeze(tbrk), np.squeeze(morpha), np.squeeze(morphfr)
+        tbrk, morpha, morphfr = x[:, 0], x[:, 1], x[:, 2]
         morpha = np.interp(t, tbrk, morpha)
         morphfr = np.interp(t, tbrk, morphfr)
     else:
